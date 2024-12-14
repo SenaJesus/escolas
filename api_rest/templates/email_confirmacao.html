@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Código de Confirmação</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .code {
+      font-size: 24px;
+      font-weight: bold;
+      color: #AD7A62;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .footer {
+      font-size: 12px;
+      color: #999999;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Seu Código de Confirmação</h1>
+    <p>Olá,</p>
+    <p>Use o seguinte código para confirmar seu email:</p>
+    <div class="code">{{ codigo }}</div>
+    <p>Se você não solicitou esta confirmação, pode ignorar este email.</p>
+    <p>Obrigado,<br>Equipe Escolas.org</p>
+    <div class="footer">
+      Este site não possui qualquer ligação com o Ministério da Educação; nosso propósito é apenas divulgar dados públicos de forma acessível.
+    </div>
+  </div>
+</body>
+</html>
