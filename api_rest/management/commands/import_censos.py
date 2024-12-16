@@ -39,6 +39,19 @@ class Command(BaseCommand):
     help = 'Importa dados dos censos escolares para o banco de dados a partir de arquivos CSV'
 
     def handle(self, *args, **options):
+        self.stdout.write("Apagando dados existentes...")
+        Infraestrutura.objects.all().delete()
+        Acessibilidade.objects.all().delete()
+        Internet.objects.all().delete()
+        Funcionarios.objects.all().delete()
+        Cotas.objects.all().delete()
+        Educacao.objects.all().delete()
+        CensoEscolar.objects.all().delete()
+
+        self.stdout.write(self.style.WARNING("Dados antigos apagados com sucesso."))
+
+        self.stdout.write("Iniciando nova importação de censos...")
+
         censos_path = os.path.join(settings.BASE_DIR, 'censos')
         
         if not os.path.exists(censos_path):
