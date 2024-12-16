@@ -72,7 +72,7 @@ class EscolaListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Escola
-        fields = ['nome', 'endereco', 'cidade', 'average_avaliacoes']
+        fields = ['id', 'nome', 'bairro', 'cidade', 'average_avaliacoes']
 
 class EscolaSerializer(serializers.ModelSerializer):
     censos = CensoEscolarSerializer(many=True, read_only=True)

@@ -124,14 +124,15 @@ def submeter_avaliacao(request, escola_id):
 @api_view(['GET'])
 def listar_escolas_com_filtros(request):
     """
-    Lista as escolas com filtros opcionais por Estado, Cidade e Nome.
+    Lista as escolas com filtros opcionais por Estado, Cidade, Nome e Bairro.
     Implementa paginação.
     Retorna apenas nome da escola, endereço, cidade e estado, e a média das avaliações.
     """
     estado = request.GET.get('estado')
     cidade = request.GET.get('cidade')
     nome = request.GET.get('nome')
-    
+    bairro = request.GET.get('bairro')
+
     escolas = Escola.objects.all().prefetch_related(
         'censos__infraestrutura__acessibilidade',
         'censos__infraestrutura__internet_aluno',
@@ -152,6 +153,9 @@ def listar_escolas_com_filtros(request):
     if nome:
         escolas = escolas.filter(nome__icontains=nome)
     
+    if bairro:
+        escolas = escolas.filter(bairro__icontains=bairro)
+    
     paginator = StandardResultsSetPagination()
     resultado_paginado = paginator.paginate_queryset(escolas, request)
     
@@ -161,7 +165,7 @@ def listar_escolas_com_filtros(request):
 @api_view(['GET'])
 def listar_todas_escolas(request):
     """
-    Lista todas as escolas com paginação, sem filtros.
+    Lista todas as escolas com paginação, ordenadas alfabeticamente pelo estado.
     Retorna apenas nome da escola, endereço, cidade e estado, e a média das avaliações.
     """
     escolas = Escola.objects.all().prefetch_related(
@@ -170,7 +174,8 @@ def listar_todas_escolas(request):
         'censos__infraestrutura__funcionarios',
         'censos__educacao__cotas',
         'cidade__estado'
-    ).annotate(average_avaliacoes=Avg('avaliacoes__nota'))
+    ).annotate(average_avaliacoes=Avg('avaliacoes__nota')) \
+     .order_by('cidade__estado__nome')
     
     paginator = StandardResultsSetPagination()
     resultado_paginado = paginator.paginate_queryset(escolas, request)

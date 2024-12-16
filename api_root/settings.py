@@ -128,9 +128,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ORIGINS = [
-    'http://localhost:8080'
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 SMTP_HOST = os.getenv('SMTP_HOST', 'smtp.mailersend.net')
 SMTP_PORT = int(os.getenv('SMTP_PORT', 587))
