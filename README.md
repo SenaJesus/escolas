@@ -86,4 +86,4 @@ Para pular a importação demorada dos dados do censo:
 
 ## Suporte
 
-Em caso de dúvidas, entre em contato por [email](seu_email).
+Em caso de dúvidas, entre em contato por [email](jesusfernandes@usp.br).
